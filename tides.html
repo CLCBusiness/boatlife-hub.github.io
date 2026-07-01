@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tide Tables | BoatLife Hub</title>
+  <style>
+    :root {
+      --primary: #0f766e;
+      --dark: #134e4a;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+    
+    header {
+      background: var(--dark);
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+    
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: all 0.3s;
+    }
+    
+    .nav-links a:hover {
+      background: rgba(255,255,255,0.1);
+      color: #67e8f9;
+    }
+    
+    .nav-links a.active {
+      background: var(--primary);
+      color: white;
+      font-weight: 600;
+    }
+    
+    .back-link {
+      color: #0f766e;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      margin: 20px 0;
+    }
+    
+    .widget-container {
+      margin: 30px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    
+    .note {
+      background: #f0f9ff;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 30px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Menu -->
+  <header>
+    <nav>
+      <div class="logo">BoatLife Hub</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Boat Reviews</a></li>
+        <li><a href="#">Maintenance</a></li>
+        <li><a href="tides.html" class="active">Tide Tables</a></li>
+        <li><a href="#">Fishing</a></li>
+        <li><a href="#">Adventures</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div style="max-width: 1100px; margin: 0 auto; padding: 20px;">
+    
+    <a href="index.html" class="back-link">← Back to Home</a>
+
+    <h1 style="color: var(--primary); text-align: center; margin: 20px 0 30px;">Live Tide Information</h1>
+
+    <!-- Tide Widget -->
+    <h2 style="text-align: center;">Tide Chart - Atlantic City, NJ (Example)</h2>
+    <div class="widget-container">
+      <div data-sealegs-tides data-lat="39.355" data-lon="-74.418" style="width:100%; height:520px;"></div>
+    </div>
+
+    <div class="note">
+      <strong>Tip:</strong> Change the latitude and longitude values to show tides for your local area. 
+      You can add more widgets for different locations on the same page.
+    </div>
+
+  </div>
+
+  <!-- Load the Tide Widget Script -->
+  <script src="https://cdn.sealegs.ai/tides/tides_chart_widget.js" type="module" defer></script>
+
+  <footer style="background: #1e2937; color: white; text-align: center; padding: 3rem 2rem; margin-top: 50px;">
+    <p>&copy; 2026 BoatLife Hub • All Rights Reserved</p>
+    <p>
+      <a href="privacy.html" style="color: #67e8f9; margin: 0 10px;">Privacy Policy</a> |
+      <a href="#" style="color: #67e8f9; margin: 0 10px;">Contact Us</a>
+    </p>
+  </footer>
+
+</body>
+</html>
