@@ -6,8 +6,9 @@
   <title>Tide Tables | BoatLife Hub</title>
   <style>
     :root {
-      --primary: #0f766e;
-      --dark: #134e4a;
+      --primary: #0a4d8c;
+      --dark: #0a0a0a;
+      --accent: #00aaff;
     }
     
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -17,62 +18,70 @@
       color: #333;
     }
     
-    header {
+    /* Mobile Top Nav */
+    .mobile-nav {
       background: var(--dark);
-      color: white;
+      padding: 1rem;
       position: sticky;
       top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    
-    nav {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      display: flex;
+      z-index: 200;
+      display: none;
       justify-content: space-between;
       align-items: center;
-      height: 70px;
     }
     
     .logo {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       font-weight: bold;
+      color: white;
+    }
+    
+    .hamburger {
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: white;
+    }
+    
+    /* Sidebar */
+    .sidebar {
+      width: 260px;
+      background: var(--dark);
+      color: white;
+      padding: 2rem 1rem;
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+      z-index: 100;
     }
     
     .nav-links {
-      display: flex;
-      gap: 2rem;
       list-style: none;
     }
     
     .nav-links a {
+      display: block;
       color: white;
       text-decoration: none;
-      font-weight: 500;
-      padding: 8px 14px;
+      padding: 14px 1rem;
       border-radius: 6px;
+      margin: 4px 0;
       transition: all 0.3s;
     }
     
-    .nav-links a:hover {
-      background: rgba(255,255,255,0.1);
-      color: #67e8f9;
-    }
-    
-    .nav-links a.active {
+    .nav-links a:hover, .nav-links a.active {
       background: var(--primary);
       color: white;
-      font-weight: 600;
     }
     
-    .back-link {
-      color: #0f766e;
-      text-decoration: none;
-      font-weight: bold;
-      display: inline-block;
-      margin: 20px 0;
+    /* Main Content */
+    .main-content {
+      margin-left: 260px;
+    }
+    
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem;
     }
     
     .widget-container {
@@ -83,60 +92,93 @@
     }
     
     .note {
-      background: #f0f9ff;
+      background: #f0f4f8;
       padding: 20px;
       border-radius: 8px;
       margin: 30px 0;
+      border-left: 5px solid var(--primary);
+    }
+    
+    footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 1rem;
+        display: none;
+      }
+      .main-content {
+        margin-left: 0;
+      }
+      .mobile-nav {
+        display: flex;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation Menu -->
-  <header>
-    <nav>
-      <div class="logo">BoatLife Hub</div>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="#">Boat Reviews</a></li>
-        <li><a href="#">Maintenance</a></li>
-        <li><a href="tides.html" class="active">Tide Tables</a></li>
-        <li><a href="#">Fishing</a></li>
-        <li><a href="#">Adventures</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+  <!-- Mobile Top Navigation -->
+  <div class="mobile-nav">
+    <div class="logo">BoatLife Hub</div>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+  </div>
 
-  <div style="max-width: 1100px; margin: 0 auto; padding: 20px;">
-    
-    <a href="index.html" class="back-link">← Back to Home</a>
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="logo" style="margin-bottom: 2rem;">BoatLife Hub</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#">Boat Reviews</a></li>
+      <li><a href="#">Maintenance</a></li>
+      <li><a href="tides.html" class="active">Tide Tables</a></li>
+      <li><a href="#">Fishing</a></li>
+      <li><a href="#">Adventures</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </div>
 
-    <h1 style="color: var(--primary); text-align: center; margin: 20px 0 10px;">Pablo Creek Tide Chart</h1>
-    <p style="text-align: center; color: #666;">Jacksonville, Florida Area</p>
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="container">
+      <h1 style="color: var(--primary); text-align: center; margin: 30px 0 10px;">Pablo Creek Tides</h1>
+      <p style="text-align: center; color: #555;">Jacksonville, Florida Area</p>
 
-    <!-- Pablo Creek Tide Widget -->
-    <div class="widget-container">
-      <div data-sealegs-tides data-lat="30.35" data-lon="-81.45" style="width:100%; height:520px;"></div>
+      <!-- Real-time Tide Widget -->
+      <div class="widget-container">
+        <div data-sealegs-tides data-lat="30.35" data-lon="-81.45" style="width:100%; height:520px;"></div>
+      </div>
+
+      <div class="note">
+        <strong>Real-time Pablo Creek Tide Chart</strong><br>
+        Perfect for boaters in the Jacksonville / Intracoastal Waterway area. Data updates automatically.
+      </div>
     </div>
 
-    <div class="note">
-      <strong>Real-time Pablo Creek tides</strong><br>
-      Data updates automatically. Perfect for boaters in the Jacksonville / Intracoastal area.
-    </div>
-
+    <footer>
+      <p>&copy; 2026 BoatLife Hub • All Rights Reserved</p>
+      <p>
+        <a href="privacy.html" style="color: var(--accent);">Privacy Policy</a>
+      </p>
+    </footer>
   </div>
 
   <!-- Tide Widget Script -->
   <script src="https://cdn.sealegs.ai/tides/tides_chart_widget.js" type="module" defer></script>
 
-  <footer style="background: #1e2937; color: white; text-align: center; padding: 3rem 2rem; margin-top: 50px;">
-    <p>&copy; 2026 BoatLife Hub • All Rights Reserved</p>
-    <p>
-      <a href="privacy.html" style="color: #67e8f9; margin: 0 10px;">Privacy Policy</a> |
-      <a href="#" style="color: #67e8f9; margin: 0 10px;">Contact Us</a>
-    </p>
-  </footer>
-
+  <script>
+    function toggleMenu() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.style.display = (sidebar.style.display === 'block') ? 'none' : 'block';
+    }
+  </script>
 </body>
 </html>
